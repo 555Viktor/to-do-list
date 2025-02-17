@@ -1,7 +1,3 @@
-Here's the final README with the requested mention:
-
----
-
 # 📝 To-Do List
 
 ## Live Preview  
