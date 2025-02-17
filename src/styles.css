@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap');
+
+:root {
+    --default-border: 1px solid black;
+    --thicker-border: 2px solid black;
+
+    --hard-box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    --light-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --modal-box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;;
+
+    --text-color: #FAF9F6;
+    --body-background: #36454F;
+    --nav-overview-background: #2A2D34;
+    --project-hover-background: rgb(128,128,128);
+    --task-container-background: #3B3F46;
+    --task-delete-hover-color: #D2042D;
+    --input-checked-color: rgb(6, 169, 6);
+    --low-priority-color: rgb(11, 218, 81);
+    --medium-priority-color: #FFBF00;
+    --high-priority-color: rgb(255, 49, 49);
+    --task-complete-color: rgb(9, 121, 105);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    outline: none;
+    font-family: "Recursive", serif;
+    font-optical-sizing: auto;
+}
+
+
+/* Flex containers, Grid containers, ...shared styles */
+body,
+#content-container,
+.modal-backdrop {
+    display: flex;
+}
+
+#nav-projects,
+.project-tasks-container,
+.modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-item,
+.project-overview-container{
+    display: grid;
+    place-items: center;
+}
+
+#nav-projects,
+.project-overview-container {
+    background: var(--nav-overview-background);
+}
+
+.btn {
+    border-radius: 1rem;
+    
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    box-shadow: var(--light-box-shadow);
+    cursor: pointer;
+}
+/* --------------- */
+
+body {
+    min-height: 100vh;
+    
+    justify-content: center;
+    align-items: center;
+
+    background: var(--body-background);
+    color: var(--text-color);
+}
+
+/* Styles for container holding all page content */
+#content-container {
+    width: 72%;
+    height: 80vh;
+
+    border: var(--default-border);
+    border-radius: 1rem;
+    
+    background: var(--task-container-background);
+    box-shadow: var( --hard-box-shadow);
+}
+
+/* Navbar styling */
+#nav-projects {
+    width: 20%;
+
+    border-right: 1px solid black;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+#nav-projects .nav-header {
+    margin: 1rem;
+}
+
+#nav-projects ul.projects-list {
+    height: 60%;
+
+    padding-inline: 1rem;
+    margin-block-end: 2rem;
+
+    list-style: none;
+    overflow-y: scroll;
+}
+
+ul.projects-list::-webkit-scrollbar {
+    width: 10px;
+} /* Scrollbar width for projects */
+
+
+ul.projects-list::-webkit-scrollbar-track {
+    background: #d5d2d2;
+    border-radius: 5px;
+} /* Scrollbar track for projects */
+
+ul.projects-list::-webkit-scrollbar-thumb {
+    background-color: #7e7c7e;
+    border-radius: 10px;
+    border: 3px solid #7e7c7e;
+} /* Scrollbar thumb for projects */
+
+ul.projects-list::-webkit-scrollbar-thumb:hover {
+    background-color: #494849;
+} /* Scrollbar thumb on hover for projects */
+
+
+#nav-projects .project-item {
+    display: flex;
+    align-items: center;
+
+    padding: 0.5rem;
+    margin-block-end: 0.5rem;
+    border-radius: 1rem;
+
+    cursor: pointer;
+}
+
+/* Add folder icon before project name */
+#nav-projects .project-item::before {
+    content: "";
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    background-image: url('./assets/folder-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    margin-inline-end: 0.5rem;
+}
+  
+
+#nav-projects .project-item:hover {
+    background: var(--project-hover-background);
+}
+
+#nav-projects .btn-create-project {
+    margin: 0 auto;
+    padding: 0.5rem 2rem;
+}
+
+/* Main content styling */
+#main-content {
+    width: 80%;
+}
+
+#main-content .project-overview-container {
+    grid-template-columns: repeat(3, 1fr);
+    
+    padding-block: 1rem;
+
+    border-top-right-radius: 1rem;
+    border-bottom: var(--default-border);
+}
+
+#main-content .project-tasks-container {
+    align-items: center;
+}
+
+#main-content .btn-create-task {
+    padding: 0.5rem 2rem;
+}
+
+/* Todo item styling */
+.todo-item {
+    width: 92%;
+    
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, auto);
+
+    margin-block: 0.5rem;
+    padding-block: 1rem;
+    gap: 1rem;
+
+    border: var(--default-border);
+    border-radius: 1rem;
+
+    box-shadow: var(--light-box-shadow);
+}
+
+.todo-checkbox {
+    width: 1.2rem;
+    height: 1.2rem;
+
+    cursor: pointer;
+}
+
+.todo-checkbox:checked {
+    accent-color: var(--input-checked-color);
+}
+
+.todo-priority {
+    width: 6rem;
+
+    padding: 0.5rem 1rem;
+    color: 	#353935;
+    font-weight: bold;
+
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.todo-priority[data-priority="high"] {
+    background: var(--high-priority-color);
+}
+
+.todo-priority[data-priority="medium"] {
+    background: var(--medium-priority-color);;
+}
+
+.todo-priority[data-priority="low"] {
+    background: var(--low-priority-color);
+}
+
+.completed {
+    background: var(--task-complete-color);
+    text-decoration: line-through;
+}
+
+.todo-item .btn-delete-todo {
+    width: 2rem;  
+    height: 2rem;      
+
+    border: none;
+    border-radius: 50%;
+
+    background: none;
+    font-size: 1.2rem;
+
+    color: inherit;
+}
+
+.test {
+    background: var(--task-delete-hover-color);
+} /* Used to change background of task when user hovers delete button */
+
+.btn-delete-todo:hover {
+    background: rgb(99, 97, 97);
+}
+
+/* Shared style for task and project creation modals */
+.modal-backdrop {
+    position: fixed;
+
+    width: 100%;
+    height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 1;
+    backdrop-filter: blur(6px);
+}
+
+.modal-form {
+    width: 24rem;
+    height: 24rem;
+
+    justify-content: space-around;
+
+    padding: 1rem 2rem;
+
+    background: #2A2D34;
+
+    border: var(--thicker-border);
+    border-radius: 1rem;
+
+    box-shadow: var(--modal-box-shadow);
+    text-align: center;
+}
+
+.modal-form .btn-add-task {
+    width: 32%;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+}
+
+.modal-form .btn-add-project {
+    width: 32%;
+    margin: 0 auto;
+    padding: 0.45rem;
+}
+
+.modal-form input#project-name {
+    margin-block-end: 1rem;
+}
+
+.modal-field label {
+    display: block;
+    margin-block-end: 0.4rem;
+
+    font-size: 1.1rem;
+}
+
+.modal-field input,
+.modal-field select {
+    width: 80%;
+    height: 2rem;
+
+    padding-left: 0.5rem;
+
+    cursor: pointer;
+}
+
+.modal-field textarea {
+    width: 80%; 
+    height: 12rem;
+
+    padding: 0.5rem;
+
+    overflow: hidden; 
+    resize: none;
+}
