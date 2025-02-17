@@ -1,5 +1,7 @@
 # 📝 To-Do List
 
+[![Screenshot](./src/assets/to-do-list-preview.jpeg)](https://555viktor.github.io/to-do-list/)
+
 ## Live Preview  
 Check out the deployed project here: [https://555viktor.github.io/to-do-list/](https://555viktor.github.io/to-do-list/) or click the image above.
 
