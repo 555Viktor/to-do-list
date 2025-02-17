@@ -70,11 +70,11 @@ function createTaskUi (task, project) {
 
     // Change task color on hovering delete button
     deleteButton.addEventListener('mouseover', () => {
-        taskDiv.classList.add('test');
+        taskDiv.classList.add('btn-delete-hover');
     });
 
     deleteButton.addEventListener('mouseleave', () => {
-        taskDiv.classList.remove('test');
+        taskDiv.classList.remove('btn-delete-hover');
     });
 
     // Append elements to taskDiv

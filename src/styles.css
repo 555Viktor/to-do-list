@@ -260,7 +260,7 @@ ul.projects-list::-webkit-scrollbar-thumb:hover {
     color: inherit;
 }
 
-.test {
+.btn-delete-hover {
     background: var(--task-delete-hover-color);
 } /* Used to change background of task when user hovers delete button */
 
