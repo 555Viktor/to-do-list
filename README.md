@@ -14,7 +14,7 @@ This is a web-based **To-Do List App** built using **HTML**, **CSS**, **JavaScri
 The To-Do List App includes the following features:
 
 - **Task Management:** Add, group, and delete tasks easily.
-- **Mark as Completed:** Click on the task's checkbox to mark it as completed.
+- **Mark as Completed:** Click on a task's checkbox to mark it as completed.
 - **Highlight Task Priority:** Assign priority levels to tasks for better organization.
 - **Eye-Friendly Design:** Interface designed for visual comfort.
 - **To be added:** Persistent storage is to be added for this project.
